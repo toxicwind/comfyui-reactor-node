@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 from modules.processing import StableDiffusionProcessingImg2Img
-from comfy_extras.chainner_models import model_loading
+from spandrel import ModelLoader, ImageModelDescriptor
 import model_management
 import comfy.utils
 import folder_paths
@@ -156,7 +156,7 @@ class reactor:
             else:
 
                 sd = comfy.utils.load_torch_file(model_path, safe_load=True)
-                facerestore_model = model_loading.load_state_dict(sd).eval()
+                facerestore_model = ModelLoader().load_from_state_dict(sd).eval()
 
             facerestore_model.to(device)
             
